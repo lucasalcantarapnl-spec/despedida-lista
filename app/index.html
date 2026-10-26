@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Despedida Lista</title>
+<meta name="description" content="Organiza la despedida de soltera completa: plan, juegos, quiz, ruleta de retos, invitación y checklist.">
+<meta name="theme-color" content="#E8457C">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Despedida">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="confeti" aria-hidden="true"></div>
+
+<!-- ACCESO -->
+<section id="gate" class="screen">
+  <div class="card gate-card">
+    <div class="logo">Despedida <span>Lista</span></div>
+    <p class="lead">La despedida que todas van a recordar, organizada en 10 minutos.</p>
+    <form id="gateForm" autocomplete="off">
+      <label for="code">Tu código de acceso</label>
+      <input id="code" name="code" type="text" inputmode="text" autocapitalize="characters" placeholder="Está en tu correo de compra" required>
+      <p id="gateError" class="error" role="alert" hidden>Ese código no es correcto. Revisa el correo de Hotmart.</p>
+      <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+    <p class="aviso18">🔞 Contenido para mayores de 18 años. Al entrar confirmas que eres mayor de edad.</p>
+  </div>
+</section>
+
+<!-- CONFIGURACIÓN -->
+<section id="setup" class="screen" hidden>
+  <div class="card">
+    <h1 class="h1">Arma tu fiesta en 2 minutos</h1>
+    <p class="muted">Con estos datos personalizamos el plan, los juegos y los retos.</p>
+    <form id="setupForm">
+      <div class="row2">
+        <div><label for="fNovia">Nombre de la novia</label><input id="fNovia" required maxlength="30" placeholder="Ej. Valentina"></div>
+        <div><label for="fNovio">Nombre del novio</label><input id="fNovio" required maxlength="30" placeholder="Ej. Andrés"></div>
+      </div>
+      <div class="row2">
+        <div><label for="fFecha">Fecha de la fiesta</label><input id="fFecha" type="date"></div>
+        <div><label for="fHora">Hora de inicio</label><input id="fHora" type="time" value="19:00"></div>
+      </div>
+      <label for="fN">¿Cuántas invitadas, más o menos?</label>
+      <input id="fN" type="number" min="2" max="80" value="10">
+
+      <fieldset>
+        <legend>Nivel de la noche <small>(que lo elija la novia)</small></legend>
+        <div class="choices" data-name="nivel">
+          <button type="button" data-v="tierno"><b>🌸 Tierno</b><span>Con mamá, tías o suegra presentes.</span></button>
+          <button type="button" data-v="divertido"><b>🎉 Divertido</b><span>Risas, retos locos y mucha complicidad.</span></button>
+          <button type="button" data-v="atrevido"><b>💋 Atrevido</b><span>Preguntas pícaras y doble sentido, nunca vulgar.</span></button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>¿Dónde es la fiesta?</legend>
+        <div class="choices three" data-name="lugar">
+          <button type="button" data-v="casa"><b>🏠 En casa</b></button>
+          <button type="button" data-v="restaurante"><b>🍽️ Restaurante o bar</b></button>
+          <button type="button" data-v="viaje"><b>🧳 Fin de semana fuera</b></button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Duración</legend>
+        <div class="choices three" data-name="duracion">
+          <button type="button" data-v="2"><b>2 horas</b></button>
+          <button type="button" data-v="3"><b>3 horas</b></button>
+          <button type="button" data-v="4"><b>4 horas</b></button>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary btn-block" type="submit">¡Crear mi fiesta! ✨</button>
+    </form>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="main" hidden>
+  <header class="topbar">
+    <div class="logo small">Despedida <span>Lista</span></div>
+    <button id="partyToggle" class="chip" type="button" aria-pressed="false">🎊 Modo fiesta</button>
+  </header>
+
+  <main id="view" tabindex="-1"></main>
+
+  <nav class="tabs" aria-label="Secciones">
+    <button data-tab="plan"><span>🗓️</span>Plan</button>
+    <button data-tab="juegos"><span>🎲</span>Juegos</button>
+    <button data-tab="quiz"><span>🧠</span>Quiz</button>
+    <button data-tab="ruleta"><span>🎡</span>Ruleta</button>
+    <button data-tab="invitar"><span>💌</span>Invitar</button>
+    <button data-tab="listas"><span>✅</span>Listas</button>
+  </nav>
+</div>
+
+<!-- Pantalla completa (quiz y ruleta) -->
+<div id="stage" class="stage" hidden role="dialog" aria-modal="true"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
